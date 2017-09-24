@@ -2,6 +2,7 @@ package com.testapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +37,23 @@ public class ItemListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
+    private static final String TAG = "ItemListActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Uri data = this.getIntent().getData();
+        if (data != null && data.isHierarchical()) {
+            switch(data.getAuthority()) {
+                case "itemdetail": // Handle the item detail deep link
+                    Intent intent = new Intent(this, ItemDetailActivity.class);
+                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, data.getPath().substring(1));
+                    startActivity(intent);
+                    break;
+            }
+        }
+
         setContentView(R.layout.activity_item_list);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
