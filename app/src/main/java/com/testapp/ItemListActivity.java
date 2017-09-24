@@ -45,10 +45,10 @@ public class ItemListActivity extends AppCompatActivity {
 
         Uri data = this.getIntent().getData();
         if (data != null && data.isHierarchical()) {
-            switch(data.getAuthority()) {
+            switch(data.getPath().split("/")[1]) {
                 case "itemdetail": // Handle the item detail deep link
                     Intent intent = new Intent(this, ItemDetailActivity.class);
-                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, data.getPath().substring(1));
+                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, data.getPath().split("/")[2]);
                     startActivity(intent);
                     break;
             }
