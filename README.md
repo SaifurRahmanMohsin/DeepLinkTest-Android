@@ -1,4 +1,4 @@
-# [DeepLinkTest-Android] #
+# DeepLinkTest-Android #
 This demonstrates the concept of deeplinking in Android.
 
 ## Usage ##
@@ -8,4 +8,5 @@ With this test app you can:
 
 ## Demo ##
 Click the image below to see it in action.
+
 [![DeepLink Demo](https://img.youtube.com/vi/Pk1TmoWN5YE/0.jpg)](https://www.youtube.com/watch?v=Pk1TmoWN5YE)
